@@ -26,7 +26,7 @@ curl -fsSL https://get.docker.com | sh
 
 ```sh
 apt-get install -y git
-git clone <repo-url> mx-server
+git clone git@github.com:JSC500/mx-simulator-server-manager.git mx-server
 cd mx-server
 ```
 
