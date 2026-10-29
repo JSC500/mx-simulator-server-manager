@@ -6,7 +6,7 @@ services:
     container_name: mxserver
     restart: unless-stopped
     ports:
-      - "8080:8080"                # the web app
+      - "9800:8080"                # the web app
       - "19800-19809:19800-19809/udp"  # one port per game server; keep in sync with MX_PORTS
     volumes:
       - ./data:/data
