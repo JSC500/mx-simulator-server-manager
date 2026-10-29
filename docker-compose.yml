@@ -1,0 +1,30 @@
+services:
+  mxserver:
+    build:
+      context: ./server
+    platform: linux/amd64          # mxserver is a 32-bit x86 binary
+    image: mxserver:latest
+    container_name: mxserver
+    restart: unless-stopped
+    ports:
+      - "19800:19800/udp"          # must match --port in serverargs.txt
+    volumes:
+      - ./data:/data
+    environment:
+      - MX_ARGS_FILE=serverargs.txt
+    stdin_open: true
+    tty: true
+
+  web:
+    build:
+      context: ./web
+    image: mxweb:latest
+    container_name: mxweb
+    restart: unless-stopped
+    ports:
+      - "8080:8080"
+    volumes:
+      - ./data:/data
+    environment:
+      - WEB_USERNAME=${WEB_USERNAME:-admin}   # set by setup.sh in .env
+      - WEB_PASSWORD=${WEB_PASSWORD:-}

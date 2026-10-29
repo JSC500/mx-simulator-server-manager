@@ -1,0 +1,9 @@
+--port 19800
+--max-clients 20
+--password changeme
+--greeting "Welcome to my server"
+--ban-file bans.txt
+--results-file results.txt
+--track-interval 15
+--laps 5
+trackinfo/rabbithill.trackinfo

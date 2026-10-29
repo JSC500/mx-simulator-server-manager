@@ -1,0 +1,14 @@
+# Server runtime data (tracks, bans, results), mounted at /data
+data/
+
+
+.env
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
+*.swp
+*~
+
+# Rust build output
+web/target/
