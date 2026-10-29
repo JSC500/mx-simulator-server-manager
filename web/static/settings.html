@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Settings · MX Simulator Server Manager</title>
+<link rel="preconnect" href="https://fonts.bunny.net">
+<link rel="stylesheet" href="https://fonts.bunny.net/css?family=pixelify-sans:400,600,700|ibm-plex-sans:400,500,600|ibm-plex-mono:400,500,600&display=swap">
+<link rel="stylesheet" href="/theme.css">
+<link rel="stylesheet" href="/app.css">
+</head>
+<body>
+<div class="scrim">
+  <form class="dialog" role="dialog" aria-modal="true" aria-labelledby="dlg-title" id="form" novalidate>
+    <div class="dialog-bar">
+      <h1 id="dlg-title"></h1>
+      <a class="dialog-close" id="close" href="/" aria-label="Close settings"></a>
+    </div>
+    <div class="tabs" role="tablist" aria-label="Settings sections" id="tabs"></div>
+    <div class="dialog-body" id="panel" role="tabpanel" style="min-height:520px">Loading…</div>
+    <div class="dialog-foot">
+      <span class="hint" id="foot-hint" style="margin-right:auto"></span>
+      <a class="btn" id="cancel" href="/">Cancel</a>
+      <button class="btn btn-pri" type="submit" id="save"></button>
+    </div>
+  </form>
+</div>
+<script src="/common.js"></script>
+<script src="/settings.js"></script>
+</body>
+</html>

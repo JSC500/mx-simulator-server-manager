@@ -1,7 +1,7 @@
 --port 19800
 --max-clients 20
 --password changeme
---greeting "Welcome to my server"
+--greeting "Boogity boogity boogity, let's go racing you bunch of hotdogs! Server managed with https://github.com/JSC500/mx-simulator-server-manager"
 --ban-file bans.txt
 --results-file results.txt
 --track-interval 15

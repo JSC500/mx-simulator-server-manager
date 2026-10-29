@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Results &amp; demos · MX Simulator Server Manager</title>
+<link rel="preconnect" href="https://fonts.bunny.net">
+<link rel="stylesheet" href="https://fonts.bunny.net/css?family=pixelify-sans:400,600,700|ibm-plex-sans:400,500,600|ibm-plex-mono:400,500,600&display=swap">
+<link rel="stylesheet" href="/theme.css">
+<link rel="stylesheet" href="/app.css">
+</head>
+<body>
+<div class="shell">
+  <nav id="sidebar" class="side" aria-label="Main"></nav>
+
+  <main class="main">
+    <div class="content">
+      <header class="page-head">
+        <div>
+          <h1 class="title">Results &amp; demos</h1>
+          <div class="subtitle">Every race with its results and demo, recorded by each server.</div>
+        </div>
+        <div class="actions" style="gap:10px">
+          <label class="lbl" style="font-size:13px;font-weight:500;gap:4px">Server
+            <select class="field" id="server-filter"><option value="">All servers</option></select>
+          </label>
+          <label class="lbl" style="font-size:13px;font-weight:500;gap:4px">Search
+            <input class="field" type="search" id="search" placeholder="Track or rider">
+          </label>
+        </div>
+      </header>
+
+      <div class="split">
+        <section class="card" aria-label="Races" style="flex:1 1 320px;min-width:0;overflow:hidden">
+          <div class="cap" style="padding:14px 16px;border-bottom:var(--bw) solid var(--line)" id="count"></div>
+          <div id="races"></div>
+        </section>
+
+        <section class="card" aria-labelledby="race-title" style="flex:2 1 560px;min-width:0;overflow:hidden" id="detail" hidden>
+          <div class="result-head">
+            <div>
+              <div class="kicker" id="race-kicker"></div>
+              <h2 id="race-title"></h2>
+              <div class="meta" id="race-meta"></div>
+            </div>
+            <div class="actions" style="gap:10px">
+              <a class="btn btn-pri" id="demo"></a>
+              <button class="btn" type="button" id="csv"></button>
+            </div>
+          </div>
+          <div class="table-wrap">
+            <table>
+              <thead><tr><th>Pos</th><th>Rider</th><th>UID</th><th>Bike</th><th>Laps</th><th>Total</th><th>Best lap</th><th>Gap</th></tr></thead>
+              <tbody id="rows"></tbody>
+            </table>
+          </div>
+        </section>
+      </div>
+    </div>
+  </main>
+</div>
+<script src="/common.js"></script>
+<script src="/results.js"></script>
+</body>
+</html>

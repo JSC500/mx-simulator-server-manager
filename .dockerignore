@@ -1,0 +1,4 @@
+data/
+web/target/
+.env
+.git

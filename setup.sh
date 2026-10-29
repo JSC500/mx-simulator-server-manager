@@ -36,7 +36,7 @@ done
 printf "WEB_USERNAME='%s'\nWEB_PASSWORD='%s'\n" "$WEB_USER" "$PASSWORD" > .env
 chmod 600 .env
 
-docker compose up -d --build
+docker compose up -d --build --remove-orphans
 
 # Ask an outside service, because on clouds like AWS or Google Cloud the VPS only sees a
 # private address

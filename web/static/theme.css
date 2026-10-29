@@ -1,0 +1,142 @@
+/*
+  Theme
+
+  Every color, line, corner, shadow and font in the web app comes from the
+  variables below. Change them here to restyle every page, then rebuild:
+
+      docker compose up -d --build
+
+  These values are the "Night" palette. The design's other palettes
+  (Clubhouse, Dusk, Paper) are at the bottom of this file: copy one over
+  the matching lines in :root to switch.
+*/
+
+:root {
+  color-scheme: dark;
+
+  /* Type: headings, buttons and labels; body text; numbers, UIDs and files */
+  --font-display: 'Pixelify Sans', monospace;
+  --font-body: 'IBM Plex Sans', system-ui, sans-serif;
+  --font-mono: 'IBM Plex Mono', ui-monospace, monospace;
+
+  /* Surfaces: page, sidebar, cards, hover, inputs, behind dialogs */
+  --bg: #111318;
+  --side: #15181E;
+  --card: #1A1E26;
+  --raise: #242A35;
+  --field: #111318;
+  --scrim: #07080B;
+
+  /* Text */
+  --ink: #E9E5DA;
+  --muted: #9C9DA3;
+  --disabled: #4A505C;
+
+  /* Lines: card borders, input and button borders, dashed table rules */
+  --line: #2A303B;
+  --line-strong: #3A4250;
+  --soft: #2A303B;
+
+  /* Race strip and dialog title bars */
+  --hero: #1F2A1E;
+  --hero-ink: #F1EEE2;
+  --hero-muted: #AEB9A2;
+  --hero-line: #34452F;
+  --hero-acc: #B3D46E;
+  --hero-track: #2D3A2A;
+
+  /* Main action color: primary buttons, top three places, current rows */
+  --accent: #B3D46E;
+  --accent-hover: #C4E08A;
+  --on-accent: #111318;
+  --accent-soft: #202B1E;
+
+  /* Toggled-on buttons and the MARSHAL badge */
+  --on-bg: #B3D46E;
+  --on-fg: #111318;
+
+  /* Status */
+  --ok: #B3D46E;
+  --warn: #E6AE4E;
+  --danger: #EF8A76;
+  --danger-soft: #33201D;
+  --info: #86B6E6;
+  --gold: #E6C25E;
+
+  /* Chat log and code boxes */
+  --chat: #0C0E12;
+  --chat-ink: #CFC8B8;
+  --chat-muted: #8E877A;
+  --chat-name: #FBF9F4;
+
+  /* Message colors players see in game */
+  --msg-white: #F4F1EA;
+  --msg-yellow: #F1C453;
+  --msg-green: #8BCB86;
+  --msg-cyan: #72C7DA;
+  --msg-magenta: #D99BE3;
+  --msg-red: #EE7B6D;
+
+  /* Shape: border width, corner radius, shadows */
+  --bw: 1px;
+  --r: 4px;
+  --shadow: none;
+  --shadow-sm: none;
+  --hero-shadow: none;
+  --dialog-shadow: 0 24px 60px rgba(0, 0, 0, .5);
+}
+
+/*
+  Clubhouse: light and calm, off-white with deep pine green and soft shadows.
+
+  color-scheme: light;
+  --bg: #F4F5F1; --side: #EAEDE6; --card: #FFFFFF; --raise: #EEF1EA; --field: #FFFFFF; --scrim: #2B332E;
+  --ink: #1D2520; --muted: #58625B; --disabled: #B8C0B3;
+  --line: #D3D9CE; --line-strong: #B8C0B3; --soft: #DFE4DA;
+  --hero: #1F3A2C; --hero-ink: #F4F5F1; --hero-muted: #B7C8BA; --hero-line: #36574A; --hero-acc: #CFE57E; --hero-track: #2E4D3D;
+  --accent: #2C6A47; --accent-hover: #22553A; --on-accent: #FFFFFF; --accent-soft: #E5EFE2;
+  --on-bg: #1F3A2C; --on-fg: #CFE57E;
+  --ok: #2C6A47; --warn: #8A5A0F; --danger: #A93B2C; --danger-soft: #F7E4E0; --info: #2F5C8A; --gold: #F0CB4E;
+  --chat: #1D2520;
+  --bw: 1px; --r: 6px;
+  --shadow: 0 1px 2px rgba(29,37,32,.06), 0 4px 12px rgba(29,37,32,.05);
+  --shadow-sm: 0 1px 0 rgba(29,37,32,.08);
+  --hero-shadow: 0 4px 14px rgba(31,58,44,.18);
+  --dialog-shadow: 0 24px 60px rgba(0,0,0,.35);
+
+
+  Dusk: muted violet with coral and mint, chunky pixel shadows.
+
+  color-scheme: dark;
+  --bg: #1B1929; --side: #211F32; --card: #27253B; --raise: #332F4B; --field: #1B1929; --scrim: #0E0D18;
+  --ink: #EEE8F6; --muted: #A9A3BD; --disabled: #4D4970;
+  --line: #3C3956; --line-strong: #4D4970; --soft: #3C3956;
+  --hero: #33263F; --hero-ink: #F7F0FA; --hero-muted: #C3B5D2; --hero-line: #4D3D60; --hero-acc: #F4A27E; --hero-track: #47385A;
+  --accent: #F4A27E; --accent-hover: #F7B697; --on-accent: #1B1929; --accent-soft: #3A2D3E;
+  --on-bg: #F4A27E; --on-fg: #1B1929;
+  --ok: #83D4B1; --warn: #EAC363; --danger: #F27F8A; --danger-soft: #3F2535; --info: #A0B6F6; --gold: #EAC363;
+  --chat: #141220;
+  --bw: 2px; --r: 0px;
+  --shadow: 4px 4px 0 #0F0E19;
+  --shadow-sm: 2px 2px 0 #0F0E19;
+  --hero-shadow: 4px 4px 0 #0F0E19;
+  --dialog-shadow: 6px 6px 0 #000000;
+
+
+  Paper: beige paper, black outlines, hard offset shadows.
+
+  color-scheme: light;
+  --bg: #EFEBE1; --side: #E7E2D5; --card: #FBF9F4; --raise: #E4DECF; --field: #FFFFFF; --scrim: #4A4740;
+  --ink: #23211D; --muted: #5F5A50; --disabled: #B9B2A2;
+  --line: #23211D; --line-strong: #23211D; --soft: #B9B2A2;
+  --hero: #23211D; --hero-ink: #FBF9F4; --hero-muted: #CFC8B8; --hero-line: #5F5A50; --hero-acc: #8BCB86; --hero-track: #3A3731;
+  --accent: #2F6B45; --accent-hover: #245437; --on-accent: #FBF9F4; --accent-soft: #E3EDDF;
+  --on-bg: #23211D; --on-fg: #F1C453;
+  --ok: #2F6B45; --warn: #8A5A0F; --danger: #A33A2A; --danger-soft: #F3DDD7; --info: #2E5A87; --gold: #F1C453;
+  --chat: #23211D;
+  --bw: 2px; --r: 0px;
+  --shadow: 5px 5px 0 #23211D;
+  --shadow-sm: 3px 3px 0 #23211D;
+  --hero-shadow: 5px 5px 0 #2F6B45;
+  --dialog-shadow: 8px 8px 0 #23211D;
+*/

@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Track library · MX Simulator Server Manager</title>
+<link rel="preconnect" href="https://fonts.bunny.net">
+<link rel="stylesheet" href="https://fonts.bunny.net/css?family=pixelify-sans:400,600,700|ibm-plex-sans:400,500,600|ibm-plex-mono:400,500,600&display=swap">
+<link rel="stylesheet" href="/theme.css">
+<link rel="stylesheet" href="/app.css">
+</head>
+<body>
+<div class="shell">
+  <nav id="sidebar" class="side" aria-label="Main"></nav>
+
+  <main class="main">
+    <div class="content">
+      <header>
+        <h1 class="title">Track library</h1>
+        <div class="subtitle">Trackinfo files shared by all servers. Players still download the track itself in game.</div>
+      </header>
+
+      <section class="card" aria-labelledby="up" style="padding:20px;display:flex;flex-direction:column;gap:14px">
+        <h2 id="up" class="card-title">Upload trackinfo</h2>
+        <label class="drop" id="drop">
+          <span id="drop-icon" style="color:var(--accent)"></span>
+          <b>Drop .trackinfo files here</b>
+          <span class="muted" style="font-size:14px">or click to choose · several at once is fine</span>
+          <input type="file" accept=".trackinfo" multiple class="sr" id="file">
+        </label>
+        <span class="muted" style="font-size:13px">In game: load a track, press T, type <span class="kbd">/savetrackinfo</span></span>
+      </section>
+
+      <section class="card" aria-labelledby="lib">
+        <div class="card-head" style="padding:16px 20px">
+          <h2 id="lib" class="card-title">All tracks <span class="mono muted" style="font-size:14px" id="total"></span></h2>
+          <label class="search" id="search-wrap">
+            <span class="sr">Search tracks</span>
+            <input type="search" id="search" placeholder="Search tracks" style="width:200px">
+          </label>
+        </div>
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>Track</th><th>File</th><th>Used by</th><th style="text-align:right">Actions</th></tr></thead>
+            <tbody id="rows"></tbody>
+          </table>
+          <div class="empty" id="empty" hidden></div>
+        </div>
+      </section>
+    </div>
+  </main>
+</div>
+<script src="/common.js"></script>
+<script src="/tracks.js"></script>
+</body>
+</html>

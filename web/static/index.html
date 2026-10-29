@@ -1,0 +1,118 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Servers · MX Simulator Server Manager</title>
+<link rel="preconnect" href="https://fonts.bunny.net">
+<link rel="stylesheet" href="https://fonts.bunny.net/css?family=pixelify-sans:400,600,700|ibm-plex-sans:400,500,600|ibm-plex-mono:400,500,600&display=swap">
+<link rel="stylesheet" href="/theme.css">
+<link rel="stylesheet" href="/app.css">
+</head>
+<body>
+<div class="shell">
+  <nav id="sidebar" class="side" aria-label="Main"></nav>
+
+  <main class="main">
+    <div class="content">
+      <header class="page-head">
+        <div class="stack-sm" style="gap:6px">
+          <div style="display:flex;align-items:center;gap:12px;flex-wrap:wrap">
+            <h1 class="title" id="name">Loading…</h1>
+            <span class="badge" id="badge" hidden></span>
+          </div>
+          <div class="mono muted" style="font-size:14px" id="address"></div>
+        </div>
+        <div class="actions" id="actions"></div>
+      </header>
+
+      <section class="card offline" id="offline" hidden>
+        <div class="offline-icon"><svg class="px" viewBox="0 0 24 24" width="48" height="48" fill="currentColor" aria-hidden="true"><path d="M4 3h16v2H4z M4 9h16v2H4z M4 5h2v4H4z M18 5h2v4h-2z M4 13h16v2H4z M4 19h16v2H4z M4 15h2v4H4z M18 15h2v4h-2z M8 6h2v2H8z M8 16h2v2H8z"></path></svg></div>
+        <h2 id="offline-title">Server offline</h2>
+        <p id="offline-text">No live data while the game server is stopped. You can still change its settings; they apply the next time it starts.</p>
+        <pre class="console" id="console" hidden></pre>
+        <div class="actions" style="justify-content:center">
+          <button class="btn btn-pri" type="button" data-power="start">Start server</button>
+          <a class="btn" id="offline-settings" href="/settings">Edit settings</a>
+        </div>
+      </section>
+
+      <div class="stack" id="online" style="gap:24px" hidden>
+        <section class="hero" aria-labelledby="hero-tag">
+          <div class="hero-row">
+            <div class="hero-track">
+              <div class="sl" id="hero-tag"></div>
+              <div class="hero-name" id="hero-name"></div>
+            </div>
+            <dl class="hero-stats">
+              <div><dt class="sl" id="prog-label"></dt><dd class="sv" id="prog-value"></dd></div>
+              <div><dt class="sl"><svg class="px" viewBox="0 0 24 24" width="12" height="12" fill="currentColor" aria-hidden="true"><path d="M7 3h10v2H7z M5 5h2v2H5z M17 5h2v2h-2z M3 7h2v10H3z M19 7h2v10h-2z M5 17h2v2H5z M17 17h2v2h-2z M7 19h10v2H7z M11 7h2v6h-2z M13 11h3v2h-3z"></path></svg>RACE TIME</dt><dd class="sv" id="race-time"></dd></div>
+              <div><dt class="sl"><svg class="px" viewBox="0 0 24 24" width="12" height="12" fill="currentColor" aria-hidden="true"><path d="M9 3h6v2H9z M7 5h2v4H7z M15 5h2v4h-2z M9 9h6v2H9z M5 13h14v2H5z M3 15h2v6H3z M19 15h2v6h-2z"></path></svg>PLAYERS</dt><dd class="sv" id="player-count"></dd></div>
+            </dl>
+            <div class="hero-next">
+              <div>
+                <div class="sl">UP NEXT</div>
+                <div class="hero-next-name" id="next-track"></div>
+              </div>
+              <button class="btn" type="button" data-act="nexttrack" id="skip-btn"></button>
+              <button class="btn" type="button" data-act="restart" id="restart-race-btn"></button>
+            </div>
+          </div>
+          <div class="hero-done" id="finished" hidden>
+            <span>Results saved. The next race starts when the server loads <b id="finished-next"></b>.</span>
+            <a href="/results">View results →</a>
+          </div>
+        </section>
+
+        <div class="split">
+          <section class="panel chat-panel" aria-labelledby="chat-title">
+            <h2 id="chat-title" class="cap">Chat</h2>
+            <div role="log" aria-label="Server chat" class="chat-log" id="chat-log"></div>
+            <form class="chat-form" id="chat-form">
+              <label class="chat-to"><span class="sr">Send to</span>
+                <select class="field" id="send-to"><option value="">All players</option></select>
+              </label>
+              <div class="chat-msg">
+                <button class="ibtn" type="button" id="color-btn" aria-expanded="false" title="Message color"></button>
+                <label style="flex:1;display:flex;min-width:0"><span class="sr">Message</span>
+                  <input class="field" type="text" id="message" maxlength="200" placeholder="Race starts in 2 minutes…" autocomplete="off">
+                </label>
+                <div class="picker" role="radiogroup" aria-label="Message color" id="picker" hidden></div>
+              </div>
+              <button class="btn btn-pri" type="submit" id="send-btn"></button>
+            </form>
+          </section>
+
+          <section class="panel rot-panel" aria-labelledby="rot-title">
+            <h2 id="rot-title" class="cap">Tracks</h2>
+            <ol class="rot" id="rotation"></ol>
+          </section>
+        </div>
+
+        <section class="card" aria-labelledby="players-title">
+          <div class="card-head">
+            <div>
+              <h2 id="players-title" class="card-title">Players</h2>
+              <div class="muted" style="font-size:13px;margin-top:2px" id="players-summary"></div>
+            </div>
+            <label class="search" style="flex:0 1 360px" id="player-search-wrap">
+              <span class="sr">Search players</span>
+              <input type="search" id="player-search" placeholder="Search name or UID">
+            </label>
+          </div>
+          <div class="table-wrap">
+            <table class="players">
+              <thead><tr><th>Place</th><th>Rider</th><th>UID</th><th>Bike</th><th>Ping</th><th>Mode</th><th style="text-align:right">Actions</th></tr></thead>
+              <tbody id="players"></tbody>
+            </table>
+            <div class="empty" id="players-empty" hidden></div>
+          </div>
+        </section>
+      </div>
+    </div>
+  </main>
+</div>
+<script src="/common.js"></script>
+<script src="/dashboard.js"></script>
+</body>
+</html>

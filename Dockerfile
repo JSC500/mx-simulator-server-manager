@@ -1,3 +1,21 @@
+# One image: the web app runs the game servers as child processes, so it can send them
+# commands on 127.0.0.1 (mxserver only accepts --xcmd-password packets from there)
+
+FROM rust:1-slim-bookworm AS web
+
+WORKDIR /src
+
+# Build dependencies first so they're cached between source changes
+COPY web/Cargo.toml web/Cargo.lock ./
+RUN mkdir src && echo "fn main() {}" > src/main.rs \
+ && cargo build --release --locked \
+ && rm -rf src
+
+COPY web/src ./src
+COPY web/static ./static
+RUN touch src/main.rs && cargo build --release --locked
+
+
 FROM debian:bookworm-slim
 
 ARG MXSERVER_URL=https://mxsimulator.com/snapshots/mxserver-2021-01-21-1548.zip
@@ -25,13 +43,14 @@ RUN set -eux; \
 RUN useradd --system --uid 1000 --home /data mx \
  && mkdir -p /data && chown mx:mx /data
 
-COPY serverargs.default.txt /opt/mxserver/serverargs.default.txt
-COPY entrypoint.sh /entrypoint.sh
+COPY server/serverargs.default.txt /opt/mxserver/serverargs.default.txt
+COPY server/entrypoint.sh /entrypoint.sh
+COPY --from=web /src/target/release/mxweb /usr/local/bin/mxweb
 RUN chmod +x /entrypoint.sh
 
 # The entrypoint starts as root to prepare /data, then drops to the mx user
 WORKDIR /data
 VOLUME ["/data"]
-EXPOSE 19800/udp
+EXPOSE 8080 19800-19809/udp
 
 ENTRYPOINT ["/entrypoint.sh"]

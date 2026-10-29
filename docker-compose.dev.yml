@@ -1,0 +1,12 @@
+# Development mode: serves the pages straight from web/static, so edits to the HTML, CSS
+# and JS show on a browser reload without rebuilding. Start with:
+#
+#   docker compose -f docker-compose.yml -f docker-compose.dev.yml up -d --build
+#
+# Changes to the Rust code or bridge.js still need that command again.
+services:
+  mxserver:
+    volumes:
+      - ./web/static:/static:ro
+    environment:
+      - MX_STATIC_DIR=/static

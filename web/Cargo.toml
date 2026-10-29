@@ -6,4 +6,6 @@ edition = "2024"
 [dependencies]
 axum = "0.8.9"
 axum-extra = { version = "0.12.6", features = ["typed-header"] }
-tokio = { version = "1.54.1", features = ["rt-multi-thread", "macros", "net", "signal"] }
+serde = { version = "1.0.229", features = ["derive"] }
+serde_json = "1.0.154"
+tokio = { version = "1.54.1", features = ["rt-multi-thread", "macros", "net", "signal", "process", "time", "sync"] }
